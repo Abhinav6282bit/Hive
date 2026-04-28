@@ -2,7 +2,7 @@ import { User, Search, ShoppingBag } from 'lucide-react'
 
 export function Navbar() {
   return (
-    <nav style={{
+    <nav className="nav-container" style={{
       position: 'fixed',
       top: '30px',
       left: '50%',
@@ -24,7 +24,7 @@ export function Navbar() {
     }}>
       {/* Left side: Logo */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
-        <h1 style={{
+        <h1 className="nav-logo" style={{
           fontFamily: '"Playfair Display", serif',
           fontSize: '2.5rem',
           letterSpacing: '0.05em',
@@ -38,7 +38,7 @@ export function Navbar() {
       </div>
 
       {/* Center: Search Bar */}
-      <div style={{ flex: 1.5, display: 'flex', justifyContent: 'center' }}>
+      <div className="desktop-only" style={{ flex: 1.5, display: 'flex', justifyContent: 'center' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -70,22 +70,24 @@ export function Navbar() {
 
       {/* Right side: Navigation Links & Icons */}
       <div style={{ flex: 1.5, display: 'flex', justifyContent: 'flex-end', gap: '30px', alignItems: 'center' }}>
-        {['ABOUT US', 'SERVICES'].map((text) => (
-          <a key={text} href="#" style={{
-            color: '#fff',
-            textDecoration: 'none',
-            fontSize: '0.75rem',
-            letterSpacing: '0.15em',
-            fontWeight: 500,
-            transition: 'opacity 0.3s ease',
-            opacity: 0.8
-          }}
-          onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
-          onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}
-          >
-            {text}
-          </a>
-        ))}
+        <div className="desktop-only" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
+          {['ABOUT US', 'SERVICES'].map((text) => (
+            <a key={text} href="#" style={{
+              color: '#fff',
+              textDecoration: 'none',
+              fontSize: '0.75rem',
+              letterSpacing: '0.15em',
+              fontWeight: 500,
+              transition: 'opacity 0.3s ease',
+              opacity: 0.8
+            }}
+            onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
+            onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}
+            >
+              {text}
+            </a>
+          ))}
+        </div>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center', marginLeft: '10px' }}>
           <ShoppingBag size={20} strokeWidth={1.5} style={{ cursor: 'pointer', color: '#fff', opacity: 0.9 }} />
           <User size={20} strokeWidth={1.5} style={{ cursor: 'pointer', color: '#fff', opacity: 0.9 }} />

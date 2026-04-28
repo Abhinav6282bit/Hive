@@ -45,6 +45,43 @@ h1, h2, h3 {
   font-family: 'Outfit', sans-serif;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .nav-container {
+    padding: 15px 20px !important;
+    width: 95% !important;
+  }
+
+  .nav-logo {
+    font-size: 2rem !important;
+  }
+  
+  .product-section-container {
+    padding: 60px 20px !important;
+  }
+  
+  .footer-container {
+    padding: 60px 20px !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+  
+  .footer-column {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 20px !important;
+    text-align: center !important;
+  }
+}
+
 #root {
   width: 100vw;
   height: 100vh;

@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer style={{
+    <footer className="footer-container" style={{
       width: '100%',
       backgroundColor: '#111',
       color: '#fff',
@@ -46,7 +46,7 @@ export function Footer() {
         </div>
       </div>
       
-      <div style={{ gridColumn: '1 / -1', borderTop: '1px solid #333', marginTop: '40px', paddingTop: '30px', display: 'flex', justifyContent: 'space-between', color: '#666', fontSize: '0.75rem' }}>
+      <div className="footer-bottom" style={{ gridColumn: '1 / -1', borderTop: '1px solid #333', marginTop: '40px', paddingTop: '30px', display: 'flex', justifyContent: 'space-between', color: '#666', fontSize: '0.75rem' }}>
         <span>© 2026 HIVE Frames. All rights reserved.</span>
         <div style={{ display: 'flex', gap: '20px' }}>
           <span style={{ cursor: 'pointer' }}>Privacy Policy</span>

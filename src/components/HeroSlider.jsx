@@ -2,28 +2,28 @@ import { useState, useEffect, useRef } from 'react'
 
 const SLIDES = [
   {
-    image: '/assets/hero-gallery.png',
+    image: `${import.meta.env.BASE_URL}assets/hero-gallery.png`,
     subtitle: 'MUSEUM QUALITY & SUSTAINABLE',
     title: 'FRAME YOUR PHOTOS',
     button: 'BESTSELLING FRAMES',
     align: 'left'
   },
   {
-    image: '/assets/hero-gift.png',
+    image: `${import.meta.env.BASE_URL}assets/hero-gift.png`,
     subtitle: '',
     title: 'THE MOST PERSONALISED GIFT',
     button: 'GIFT NOW',
     align: 'left'
   },
   {
-    image: '/assets/hero-modern.png',
+    image: `${import.meta.env.BASE_URL}assets/hero-modern.png`,
     subtitle: 'MINIMALIST ELEGANCE',
     title: 'STATEMENT ART PIECES',
     button: 'SHOP THE LOOK',
     align: 'left'
   },
   {
-    image: '/assets/hero-shelf.png',
+    image: `${import.meta.env.BASE_URL}assets/hero-shelf.png`,
     subtitle: 'CURATE YOUR MEMORIES',
     title: 'BEAUTIFUL GALLERY SHELVES',
     button: 'EXPLORE COLLECTIONS',

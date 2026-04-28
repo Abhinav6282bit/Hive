@@ -5,31 +5,31 @@ const products = [
     id: 1,
     name: 'The Classic Black',
     price: '$120.00',
-    image: '/assets/product_frame_black_1777394687615.png'
+    image: `${import.meta.env.BASE_URL}assets/product_frame_black_1777394687615.png`
   },
   {
     id: 2,
     name: 'Natural Oak',
     price: '$140.00',
-    image: '/assets/product_frame_oak_1777394702502.png'
+    image: `${import.meta.env.BASE_URL}assets/product_frame_oak_1777394702502.png`
   },
   {
     id: 3,
     name: 'Gallery Gold',
     price: '$160.00',
-    image: '/assets/product_frame_gold_1777394717703.png'
+    image: `${import.meta.env.BASE_URL}assets/product_frame_gold_1777394717703.png`
   },
   {
     id: 4,
     name: 'Modern Silver',
     price: '$130.00',
-    image: '/assets/product_frame_silver_1777394732264.png'
+    image: `${import.meta.env.BASE_URL}assets/product_frame_silver_1777394732264.png`
   }
 ]
 
 export function ProductSection() {
   return (
-    <section style={{
+    <section className="product-section-container" style={{
       width: '100%',
       padding: '100px 60px',
       backgroundColor: '#0a0a0a',
