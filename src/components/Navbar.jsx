@@ -38,7 +38,7 @@ export function Navbar() {
       </div>
 
       {/* Center: Search Bar */}
-      <div className="desktop-only" style={{ flex: 1.5, display: 'flex', justifyContent: 'center' }}>
+      <div className="search-wrapper" style={{ flex: 1.5, display: 'flex', justifyContent: 'center' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',

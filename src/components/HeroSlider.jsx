@@ -86,9 +86,13 @@ export function HeroSlider() {
       touchStartY = e.touches[0].clientY
     }
     const handleTouchMove = (e) => {
-      if (window.scrollY > 50) return
-      if (isAnimating) {
-        e.preventDefault()
+      // Prevent native scrolling if we are not on the last slide, 
+      // or if we are animating, to allow the swipe to trigger the slider instead
+      if (currentSlide < SLIDES.length - 1 || isAnimating) {
+        // Only prevent default if we are at the top of the page
+        if (window.scrollY <= 50) {
+          e.preventDefault()
+        }
       }
     }
     const handleTouchEnd = (e) => {
@@ -96,10 +100,10 @@ export function HeroSlider() {
       const touchEndY = e.changedTouches[0].clientY
       const deltaY = touchStartY - touchEndY
       
-      if (deltaY > 30) { // Swiped up (scrolling down)
+      if (deltaY > 40) { // Swiped up (scrolling down)
         if (currentSlide === SLIDES.length - 1) return
         nextSlide()
-      } else if (deltaY < -30) { // Swiped down (scrolling up)
+      } else if (deltaY < -40) { // Swiped down (scrolling up)
         if (currentSlide === 0) return
         prevSlide()
       }

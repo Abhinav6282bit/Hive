@@ -57,7 +57,20 @@ h1, h2, h3 {
   }
 
   .nav-logo {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
+  }
+  
+  .search-wrapper {
+    flex: 2 !important;
+    margin: 0 10px !important;
+  }
+
+  .search-wrapper > div {
+    padding: 6px 12px !important;
+  }
+
+  .search-input {
+    font-size: 0.7rem !important;
   }
   
   .product-section-container {
