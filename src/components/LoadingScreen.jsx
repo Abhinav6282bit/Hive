@@ -21,11 +21,11 @@ export function LoadingScreen({ onComplete }) {
 
     const fadeTimer = setTimeout(() => {
       setOpacity(0)
-    }, 4500)
+    }, 4800)
 
     const removeTimer = setTimeout(() => {
       if (onComplete) onComplete()
-    }, 5500)
+    }, 5800)
 
     return () => {
       clearInterval(progressTimer)
@@ -38,65 +38,62 @@ export function LoadingScreen({ onComplete }) {
     <div style={{
       position: 'fixed',
       inset: 0,
-      backgroundColor: '#fff', // White background based on the new image
+      backgroundColor: '#070707', // Dark mode background
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 9999,
       opacity: opacity,
-      transition: 'opacity 0.8s ease-in-out',
+      transition: 'opacity 1s ease-in-out',
       pointerEvents: opacity === 0 ? 'none' : 'all'
     }}>
-      <div style={{ position: 'relative', width: '300px', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ position: 'relative', width: '280px', height: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <svg viewBox="0 0 200 200" style={{ width: '100%', height: '100%' }}>
-          {/* Top Hexagon (Reddish) */}
-          <path d="M 120 40 L 135 50 L 135 65 L 120 75 L 105 65 L 105 50 Z" 
-                pathLength="1" fill="none" stroke="rgba(212, 115, 85, 0.4)" strokeWidth="1.2" className="hex hex-1" />
+          {/* Top Hexagon (Copper Tint) */}
+          <path d="M 100 30 L 115 40 L 115 60 L 100 70 L 85 60 L 85 40 Z" 
+                pathLength="1" fill="none" stroke="rgba(212, 115, 85, 0.8)" strokeWidth="1.5" className="hex hex-1" />
           
           {/* Middle Cluster */}
-          <path d="M 100 60 L 115 70 L 115 85 L 100 95 L 85 85 L 85 70 Z" 
-                pathLength="1" fill="none" stroke="rgba(100, 100, 100, 0.3)" strokeWidth="1.2" className="hex hex-2" />
-          <path d="M 130 70 L 145 80 L 145 95 L 130 105 L 115 95 L 115 80 Z" 
-                pathLength="1" fill="none" stroke="rgba(100, 100, 100, 0.3)" strokeWidth="1.2" className="hex hex-3" />
+          <path d="M 80 60 L 95 70 L 95 90 L 80 100 L 65 90 L 65 70 Z" 
+                pathLength="1" fill="none" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1.5" className="hex hex-2" />
+          <path d="M 120 60 L 135 70 L 135 90 L 120 100 L 105 90 L 105 70 Z" 
+                pathLength="1" fill="none" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1.5" className="hex hex-3" />
           
-          {/* Organic Honey Drips */}
+          {/* Bottom Organic Honey Drips */}
           {/* Left Drip */}
-          <path d="M 85 85 C 85 105 80 115 85 120 C 90 125 95 115 95 105" 
-                pathLength="1" fill="none" stroke="rgba(150, 150, 150, 0.4)" strokeWidth="1.2" className="drip drip-1" />
+          <path d="M 65 90 C 65 110 60 125 70 130 C 80 135 85 120 85 100" 
+                pathLength="1" fill="none" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1.5" className="drip drip-1" />
           
           {/* Center Main Drip (with bubble) */}
-          <path d="M 100 95 C 100 125 105 145 115 150 C 125 155 135 145 135 125" 
-                pathLength="1" fill="none" stroke="rgba(120, 130, 160, 0.5)" strokeWidth="1.5" className="drip drip-2" />
-          <circle cx="118" cy="138" r="4" fill="none" stroke="rgba(120, 130, 160, 0.5)" strokeWidth="1" className="bubble" />
-          <circle cx="112" cy="148" r="2" fill="rgba(120, 130, 160, 0.6)" className="bubble-dot" />
+          <path d="M 100 70 C 100 110 105 130 115 135 C 125 140 135 130 135 110" 
+                pathLength="1" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.8" className="drip drip-2" />
+          <circle cx="118" cy="118" r="4" fill="none" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1.2" className="bubble" />
+          <circle cx="112" cy="128" r="2" fill="#D4AF37" className="bubble-dot" />
           
           {/* Right Drip */}
-          <path d="M 145 95 C 145 115 155 135 145 140 C 135 145 135 125 135 105" 
-                pathLength="1" fill="none" stroke="rgba(140, 150, 170, 0.4)" strokeWidth="1.2" className="drip drip-3" />
+          <path d="M 135 90 C 135 110 145 125 135 130 C 125 135 125 120 125 100" 
+                pathLength="1" fill="none" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1.5" className="drip drip-3" />
         </svg>
 
-        {/* Serif Text Overlaid */}
-        <div className="brand-overlay" style={{
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
+        {/* Serif Text Centered Under Logo */}
+        <div className="brand-text" style={{
+          marginTop: '-20px',
           fontFamily: '"Lora", "Georgia", serif',
-          fontSize: '2.8rem',
-          color: 'rgba(50, 50, 50, 0.85)',
-          letterSpacing: '-0.02em',
-          pointerEvents: 'none',
-          whiteSpace: 'nowrap'
+          fontSize: '2.4rem',
+          color: '#fff',
+          letterSpacing: '-0.01em',
+          pointerEvents: 'none'
         }}>
           Frame.Hive
         </div>
       </div>
 
-      <div className="loader-container" style={{ marginTop: '20px', width: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(0,0,0,0.05)', position: 'relative' }}>
-          <div style={{ width: `${progress}%`, height: '100%', backgroundColor: 'rgba(50,50,50,0.4)', transition: 'width 0.1s linear' }} />
+      <div className="loader-box" style={{ marginTop: '30px', width: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)', position: 'relative' }}>
+          <div style={{ width: `${progress}%`, height: '100%', backgroundColor: 'rgba(212, 175, 55, 0.8)', transition: 'width 0.1s linear' }} />
         </div>
-        <span style={{ marginTop: '10px', fontFamily: 'serif', fontSize: '0.7rem', color: 'rgba(0,0,0,0.2)' }}>
+        <span style={{ marginTop: '15px', fontFamily: 'serif', fontSize: '0.7rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.3)' }}>
           {progress}%
         </span>
       </div>
@@ -107,64 +104,64 @@ export function LoadingScreen({ onComplete }) {
         .hex {
           stroke-dasharray: 1;
           stroke-dashoffset: 1;
-          animation: draw 2s ease forwards;
+          animation: drawLine 1.8s ease forwards;
         }
         .hex-1 { animation-delay: 0.1s; }
         .hex-2 { animation-delay: 0.4s; }
-        .hex-3 { animation-delay: 0.6s; }
+        .hex-3 { animation-delay: 0.4s; }
 
         .drip {
           stroke-dasharray: 1;
           stroke-dashoffset: 1;
-          animation: draw 2.5s ease-out forwards;
+          animation: drawLine 2s ease-out forwards;
         }
         .drip-1 { animation-delay: 0.8s; }
         .drip-2 { animation-delay: 1.1s; }
         .drip-3 { animation-delay: 1.3s; }
 
-        @keyframes draw {
+        @keyframes drawLine {
           to { stroke-dashoffset: 0; }
         }
 
         .bubble {
           opacity: 0;
           transform: scale(0);
-          transform-origin: 118px 138px;
-          animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s forwards;
+          transform-origin: 118px 118px;
+          animation: popBubble 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards;
         }
 
         .bubble-dot {
           opacity: 0;
           transform: translateY(-5px);
-          animation: drop 1.5s ease 2.5s infinite;
+          animation: dripAnim 2s ease 2.8s infinite;
         }
 
-        @keyframes pop {
+        @keyframes popBubble {
           to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes drop {
+        @keyframes dripAnim {
           0% { opacity: 0; transform: translateY(-5px); }
-          50% { opacity: 1; transform: translateY(10px); }
-          100% { opacity: 0; transform: translateY(20px); }
+          50% { opacity: 1; transform: translateY(15px); }
+          100% { opacity: 0; transform: translateY(30px); }
         }
 
-        .brand-overlay {
+        .brand-text {
           opacity: 0;
-          transform: scale(0.95);
-          animation: fadeIn 1.5s ease 0.5s forwards;
+          transform: translateY(10px);
+          animation: fadeInText 1s ease 2.5s forwards;
         }
 
-        @keyframes fadeIn {
-          to { opacity: 1; transform: scale(1); }
+        @keyframes fadeInText {
+          to { opacity: 1; transform: translateY(0); }
         }
 
-        .loader-container {
+        .loader-box {
           opacity: 0;
-          animation: simpleFade 1s ease 1s forwards;
+          animation: fadeInLoader 1s ease 3s forwards;
         }
 
-        @keyframes simpleFade {
+        @keyframes fadeInLoader {
           to { opacity: 1; }
         }
       `}</style>
