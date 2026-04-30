@@ -36,18 +36,19 @@ export function LoadingScreen({ onComplete }) {
     }
   }, [onComplete])
 
-  const Hexagon = ({ cx, cy, className }) => {
-    const r = 24;
-    const w = 20.78; // r * sqrt(3) / 2 = 24 * 0.866
+  const Hexagon = ({ cx, cy, stroke, className }) => {
+    const r = 22;
+    const w = 38.10; // 22 * sqrt(3)
+    const halfW = 19.05;
     const points = `
       ${cx},${cy - r}
-      ${cx + w},${cy - r/2}
-      ${cx + w},${cy + r/2}
+      ${cx + halfW},${cy - r/2}
+      ${cx + halfW},${cy + r/2}
       ${cx},${cy + r}
-      ${cx - w},${cy + r/2}
-      ${cx - w},${cy - r/2}
+      ${cx - halfW},${cy + r/2}
+      ${cx - halfW},${cy - r/2}
     `;
-    return <polygon points={points} fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" className={className} />
+    return <polygon points={points} fill="none" stroke={stroke || "rgba(255,255,255,0.3)"} strokeWidth="1.5" className={className} />
   }
 
   return (
@@ -66,32 +67,39 @@ export function LoadingScreen({ onComplete }) {
     }}>
       <div style={{ position: 'relative', width: '220px', height: '240px' }}>
         <svg viewBox="0 0 200 220" style={{ width: '100%', height: '100%' }}>
-          {/* Hexagon Cluster */}
-          <Hexagon cx={100} cy={60} className="hex hex-1" />
-          <Hexagon cx={79.22} cy={96} className="hex hex-2" />
-          <Hexagon cx={120.78} cy={96} className="hex hex-3" />
-          <Hexagon cx={100} cy={132} className="hex hex-4" />
+          
+          {/* Top Hexagon (Reddish/Copper) */}
+          <Hexagon cx={100} cy={48} stroke="rgba(212, 115, 85, 0.7)" className="hex hex-top" />
+          
+          {/* Center Hexagon */}
+          <Hexagon cx={100} cy={70} className="hex hex-center" />
+          
+          {/* Left Hexagon */}
+          <Hexagon cx={61.9} cy={70} className="hex hex-left" />
+          
+          {/* Right Hexagon */}
+          <Hexagon cx={138.1} cy={70} className="hex hex-right" />
+          
+          {/* Bottom-Left Hexagon */}
+          <Hexagon cx={80.95} cy={103} className="hex hex-bottom" />
 
           {/* Left Hook Drip */}
-          {/* Middle Left p5 = cx - w, cy + r/2 = 79.22 - 20.78, 96 + 12 = 58.44, 108 */}
-          <path d="M 58.44 108 L 58.44 145 A 6 6 0 0 1 46.44 145 L 46.44 135" 
-                fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" className="drip-line drip-1" />
+          <path d="M 42.85 81 L 42.85 150 A 7 7 0 0 1 28.85 150 L 28.85 125" 
+                fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-left" />
 
           {/* Right Hook Drip */}
-          {/* Middle Right p3 = cx + w, cy + r/2 = 120.78 + 20.78, 96 + 12 = 141.56, 108 */}
-          <path d="M 141.56 108 L 141.56 145 A 6 6 0 0 0 153.56 145 L 153.56 135" 
-                fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" className="drip-line drip-2" />
+          <path d="M 157.15 81 L 157.15 150 A 7 7 0 0 0 171.15 150 L 171.15 125" 
+                fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-right" />
 
-          {/* Center Straight Drip */}
-          {/* Bottom p4 = cx, cy + r = 100, 132 + 24 = 156 */}
-          <path d="M 100 156 L 100 176" 
-                fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" className="drip-line drip-3" />
+          {/* Bottom-Left Straight Drip */}
+          <path d="M 80.95 125 L 80.95 160" 
+                fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-center" />
 
           {/* Hollow Circle */}
-          <circle cx="100" cy="183" r="3.5" fill="none" stroke="rgba(212, 175, 55, 0.7)" strokeWidth="1.5" className="hollow-circle" />
+          <circle cx="80.95" cy="166" r="4" fill="none" stroke="#D4AF37" strokeWidth="1.5" className="hollow-circle" />
 
           {/* Solid Gold Dot */}
-          <circle cx="100" cy="196" r="2" fill="#D4AF37" className="solid-dot" />
+          <circle cx="80.95" cy="178" r="2" fill="#D4AF37" className="solid-dot" />
         </svg>
       </div>
 
@@ -118,19 +126,20 @@ export function LoadingScreen({ onComplete }) {
           stroke-dashoffset: 200;
           animation: drawPath 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
-        .hex-1 { animation-delay: 0.2s; }
-        .hex-2 { animation-delay: 0.5s; }
-        .hex-3 { animation-delay: 0.5s; }
-        .hex-4 { animation-delay: 0.8s; }
+        .hex-top { animation-delay: 0.1s; }
+        .hex-center { animation-delay: 0.4s; }
+        .hex-left { animation-delay: 0.7s; }
+        .hex-right { animation-delay: 0.7s; }
+        .hex-bottom { animation-delay: 1.0s; }
 
         .drip-line {
-          stroke-dasharray: 100;
-          stroke-dashoffset: 100;
+          stroke-dasharray: 150;
+          stroke-dashoffset: 150;
           animation: drawPath 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
-        .drip-1 { animation-delay: 1.2s; }
-        .drip-2 { animation-delay: 1.2s; }
-        .drip-3 { animation-delay: 1.5s; }
+        .drip-left { animation-delay: 1.4s; }
+        .drip-right { animation-delay: 1.4s; }
+        .drip-center { animation-delay: 1.6s; }
 
         @keyframes drawPath {
           to { stroke-dashoffset: 0; }
@@ -139,15 +148,15 @@ export function LoadingScreen({ onComplete }) {
         .hollow-circle {
           opacity: 0;
           transform: scale(0);
-          transform-origin: 100px 183px;
-          animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.0s forwards;
+          transform-origin: 80.95px 166px;
+          animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards;
         }
 
         .solid-dot {
           opacity: 0;
           transform: scale(0);
-          transform-origin: 100px 196px;
-          animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.3s forwards;
+          transform-origin: 80.95px 178px;
+          animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s forwards;
         }
 
         @keyframes popIn {
@@ -157,12 +166,12 @@ export function LoadingScreen({ onComplete }) {
         .brand-text {
           opacity: 0;
           transform: translateY(10px);
-          animation: fadeUp 1s ease 2.5s forwards;
+          animation: fadeUp 1s ease 2.8s forwards;
         }
 
         .progress-container {
           opacity: 0;
-          animation: fadeIn 1s ease 2.8s forwards;
+          animation: fadeIn 1s ease 3.0s forwards;
         }
 
         @keyframes fadeUp {
