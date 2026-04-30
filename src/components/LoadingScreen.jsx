@@ -38,17 +38,9 @@ export function LoadingScreen({ onComplete }) {
 
   const Hexagon = ({ cx, cy, stroke, className }) => {
     const r = 22;
-    const w = 38.10; // 22 * sqrt(3)
-    const halfW = 19.05;
-    const points = `
-      ${cx},${cy - r}
-      ${cx + halfW},${cy - r/2}
-      ${cx + halfW},${cy + r/2}
-      ${cx},${cy + r}
-      ${cx - halfW},${cy + r/2}
-      ${cx - halfW},${cy - r/2}
-    `;
-    return <polygon points={points} fill="none" stroke={stroke || "rgba(255,255,255,0.3)"} strokeWidth="1.5" className={className} />
+    const halfW = 19.05; // 22 * sqrt(3) / 2
+    const d = `M ${cx} ${cy - r} L ${cx + halfW} ${cy - r/2} L ${cx + halfW} ${cy + r/2} L ${cx} ${cy + r} L ${cx - halfW} ${cy + r/2} L ${cx - halfW} ${cy - r/2} Z`;
+    return <path d={d} fill="none" stroke={stroke || "rgba(255,255,255,0.3)"} strokeWidth="1.5" className={className} />
   }
 
   return (
