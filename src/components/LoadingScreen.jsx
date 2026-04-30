@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
 
+const Hexagon = ({ cx, cy, stroke, className }) => {
+  const r = 22;
+  const halfW = 19.05; // 22 * sqrt(3) / 2
+  const d = `M ${cx} ${cy - r} L ${cx + halfW} ${cy - r/2} L ${cx + halfW} ${cy + r/2} L ${cx} ${cy + r} L ${cx - halfW} ${cy + r/2} L ${cx - halfW} ${cy - r/2} Z`;
+  return <path d={d} pathLength="100" fill="none" stroke={stroke || "rgba(255,255,255,0.3)"} strokeWidth="1.5" className={className} />
+}
+
 export function LoadingScreen({ onComplete }) {
   const [opacity, setOpacity] = useState(1)
   const [progress, setProgress] = useState(0)
@@ -36,13 +43,6 @@ export function LoadingScreen({ onComplete }) {
     }
   }, [onComplete])
 
-  const Hexagon = ({ cx, cy, stroke, className }) => {
-    const r = 22;
-    const halfW = 19.05; // 22 * sqrt(3) / 2
-    const d = `M ${cx} ${cy - r} L ${cx + halfW} ${cy - r/2} L ${cx + halfW} ${cy + r/2} L ${cx} ${cy + r} L ${cx - halfW} ${cy + r/2} L ${cx - halfW} ${cy - r/2} Z`;
-    return <path d={d} fill="none" stroke={stroke || "rgba(255,255,255,0.3)"} strokeWidth="1.5" className={className} />
-  }
-
   return (
     <div style={{
       position: 'fixed',
@@ -77,15 +77,15 @@ export function LoadingScreen({ onComplete }) {
 
           {/* Left Hook Drip */}
           <path d="M 42.85 81 L 42.85 150 A 7 7 0 0 1 28.85 150 L 28.85 125" 
-                fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-left" />
+                pathLength="100" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-left" />
 
           {/* Right Hook Drip */}
           <path d="M 157.15 81 L 157.15 150 A 7 7 0 0 0 171.15 150 L 171.15 125" 
-                fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-right" />
+                pathLength="100" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-right" />
 
           {/* Bottom-Left Straight Drip */}
           <path d="M 80.95 125 L 80.95 160" 
-                fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-center" />
+                pathLength="100" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" className="drip-line drip-center" />
 
           {/* Hollow Circle */}
           <circle cx="80.95" cy="166" r="4" fill="none" stroke="#D4AF37" strokeWidth="1.5" className="hollow-circle" />
@@ -114,8 +114,8 @@ export function LoadingScreen({ onComplete }) {
 
       <style>{`
         .hex {
-          stroke-dasharray: 200;
-          stroke-dashoffset: 200;
+          stroke-dasharray: 100;
+          stroke-dashoffset: 100;
           animation: drawPath 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .hex-top { animation-delay: 0.1s; }
@@ -125,8 +125,8 @@ export function LoadingScreen({ onComplete }) {
         .hex-bottom { animation-delay: 1.0s; }
 
         .drip-line {
-          stroke-dasharray: 150;
-          stroke-dashoffset: 150;
+          stroke-dasharray: 100;
+          stroke-dashoffset: 100;
           animation: drawPath 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .drip-left { animation-delay: 1.4s; }
