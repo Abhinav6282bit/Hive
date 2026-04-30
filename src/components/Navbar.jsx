@@ -1,6 +1,6 @@
 import { User, Search, ShoppingBag } from 'lucide-react'
 
-export function Navbar() {
+export function Navbar({ onSearch }) {
   return (
     <nav className="nav-container" style={{
       position: 'fixed',
@@ -31,8 +31,11 @@ export function Navbar() {
           fontWeight: 600,
           margin: 0,
           color: '#fff',
-          textShadow: '0 4px 20px rgba(0,0,0,0.4)'
-        }}>
+          textShadow: '0 4px 20px rgba(0,0,0,0.4)',
+          cursor: 'pointer'
+        }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           HIVE
         </h1>
       </div>
@@ -54,6 +57,7 @@ export function Navbar() {
             className="search-input"
             type="text" 
             placeholder="Search frames, gifts..." 
+            onChange={(e) => onSearch && onSearch(e.target.value)}
             style={{
               background: 'transparent',
               border: 'none',
@@ -71,8 +75,12 @@ export function Navbar() {
       {/* Right side: Navigation Links & Icons */}
       <div style={{ flex: 1.5, display: 'flex', justifyContent: 'flex-end', gap: '30px', alignItems: 'center' }}>
         <div className="desktop-only" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
-          {['ABOUT US', 'SERVICES'].map((text) => (
-            <a key={text} href="#" style={{
+          {[
+            { label: 'SHOP', href: '#shop' },
+            { label: 'ABOUT US', href: '#about-us' },
+            { label: 'SERVICES', href: '#services' }
+          ].map((link) => (
+            <a key={link.label} href={link.href} style={{
               color: '#fff',
               textDecoration: 'none',
               fontSize: '0.75rem',
@@ -83,8 +91,15 @@ export function Navbar() {
             }}
             onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
             onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.querySelector(link.href);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
             >
-              {text}
+              {link.label}
             </a>
           ))}
         </div>
