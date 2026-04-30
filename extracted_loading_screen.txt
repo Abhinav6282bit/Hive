@@ -1,0 +1,2 @@
+﻿"import { useState, useEffect } from 'react'\nimport { useProgress } from '@react-three/drei'\n\nexport function LoadingScreen({ assetsLoaded }) {\n  const { progress } = useProgress()\n  const [visible, setVisible] = useState(true)\n\n  useEffect(() => {\
+<truncated 5018 bytes>
